@@ -1,0 +1,10 @@
+<div class="body">
+  <app-navbar></app-navbar>
+  <div role="main" class="main shop">
+    <div class="cart">
+      <button [routerLink]="['/cart']" class="btn btn-quaternary"><i class="fa fa-cart-plus cart-icon"></i></button>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+  <app-footer></app-footer>
+</div>
