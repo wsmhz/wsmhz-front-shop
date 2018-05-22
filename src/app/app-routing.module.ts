@@ -18,7 +18,7 @@ const routes: Routes = [
   {path: 'order', component : OrderComponent},
   {path: 'login', component : LoginComponent},
   {path: 'register', component : RegisterComponent},
-  {path: '**', component : Code404Component}
+  // {path: '**', component : Code404Component}
 ];
 
 @NgModule({

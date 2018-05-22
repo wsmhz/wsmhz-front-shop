@@ -5,7 +5,7 @@ import {CommonConfig} from '../../config/commonConfig';
 import {Router} from '@angular/router';
 
 declare var $:any;
-
+declare var layer:any;
 @Injectable()
 export class HttpService {
 
@@ -66,10 +66,10 @@ export class HttpService {
   private handleSuccess(result) {
     if (result && (result.status !== this.commonConfig.RESPONSE_CODE.SUCCESS)) { // 由这里统一处理请求返回数据失败的情况
       if( ! this.commonUtil.isNull(result.msg)){
-        // this.commonUtil.toastr_error(result.msg);
+        layer.msg(result.msg, {icon: 5});
       }
     }else if( ! this.commonUtil.isNull(result.msg)){
-      // this.commonUtil.toastr_info(result.msg);
+        layer.msg(result.msg, {icon: 6});
     }
     return result;
   }
@@ -91,7 +91,7 @@ export class HttpService {
     if (errorResponse.status === 401 && errorResponse.error.status === this.commonConfig.RESPONSE_CODE.NEED_LOGIN) {
       this.router.navigate(["/login"]);
     }
-    // this.commonUtil.toastr_error(msg); // 由这里统一处理error,不需要每次都catch
+    layer.msg(msg, {icon: 2}); // 由这里统一处理error,不需要每次都catch
     console.log(errorResponse,msg);
   }
 
