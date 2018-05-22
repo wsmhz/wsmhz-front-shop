@@ -18,7 +18,13 @@ import { ProductComponent } from './component/product/product.component';
 import { ProductDetailComponent } from './component/product-detail/product-detail.component';
 import { CartComponent } from './component/cart/cart.component';
 import { OrderComponent } from './component/order/order.component';
-
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
+import {HashLocationStrategy, LocationStrategy} from "@angular/common";
+import {HttpService} from "./service/common/http.service";
+import {CommonUtil} from "./utils/commonUtil";
+import {CommonConfig} from "./config/commonConfig";
 
 @NgModule({
   declarations: [
@@ -40,9 +46,18 @@ import { OrderComponent } from './component/order/order.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    FormsModule,
+    HttpClientModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    HttpService,
+    CommonConfig,
+    CommonUtil,
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
