@@ -27,12 +27,12 @@
             <div class="featured-box featured-box-primary align-left mt-xlg">
               <div class="box-content">
                 <h4 class="heading-primary text-uppercase mb-md">登陆</h4>
-                <form action="/" id="frmSignIn" method="post">
+                <form formGroup="loginForm" (ngSubmit)="login()"  id="frmSignIn" >
                   <div class="row">
                     <div class="form-group">
                       <div class="col-md-12">
                         <label>用户名</label>
-                        <input type="text" value="" class="form-control input-lg" placeholder="账号/手机号/邮箱">
+                        <input formControlName="username" type="text" value="" class="form-control input-lg" placeholder="账号/手机号/邮箱">
                       </div>
                     </div>
                   </div>
@@ -54,7 +54,7 @@
 															</span>
                     </div>
                     <div class="col-md-6">
-                      <input type="submit" value="登陆" class="btn btn-primary pull-right mb-xl" data-loading-text="请求中...">
+                      <input type="submit" onclick="a()" value="登陆" class="btn btn-primary pull-right mb-xl" data-loading-text="请求中...">
                     </div>
                     <div class="row">
                       <div class="col-md-12">
