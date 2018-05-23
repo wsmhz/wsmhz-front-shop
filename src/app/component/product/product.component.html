@@ -1,11 +1,15 @@
 <div class="container">
-
     <div class="row">
       <div class="col-md-12">
         <hr class="tall">
       </div>
     </div>
-
+    <div class="row">
+      <div class="col-md-6">
+        <h1 class="mb-none"><strong></strong></h1>
+        <p>.......</p>
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-6">
         <h1 class="mb-none"><strong></strong></h1>
@@ -16,12 +20,12 @@
     <div class="row">
 
       <ul class="products product-thumb-info-list" data-plugin-masonry>
-        <li class="col-md-3 col-sm-6 col-xs-12 product">
-          <a href="shop-product-sidebar.html">
-            <span class="onsale">热</span>
+        <li class="col-md-3 col-sm-6 col-xs-12 product"  *ngFor="let product of productList">
+          <a *ngIf="product.flag == 'HOT'">
+            <span class="onsale">热销</span>
           </a>
           <span class="product-thumb-info">
-                      <a href="shop-cart.html" class="add-to-cart-product">
+                      <a class="add-to-cart-product">
                         <span><i class="fa fa-shopping-cart"></i> 加入购物车</span>
                       </a>
                       <a [routerLink]="['/productDetail']">
@@ -29,140 +33,20 @@
                           <span class="product-thumb-info-act">
                             <span class="product-thumb-info-act-right"><em><i class="fa fa-search-plus"></i>查看详情</em></span>
                           </span>
-                          <img alt="" class="img-responsive" src="../../../assets/img/products/product-1.jpg">
+                          <img alt="" class="img-responsive" src="{{product.mainImage}}">
                         </span>
                       </a>
                       <span class="product-thumb-info-content">
-                        <a href="shop-product-sidebar.html">
-                          <h4>2018新款照相机</h4>
+                        <a  >
+                          <h5>{{product.subtitle}}</h5>
                           <span class="price">
-                            <del><span class="amount">￥625</span></del>
-                            <ins><span class="amount">￥599</span></ins>
+                            <br>
+                            <ins><span class="amount pull-right">￥{{product.price}}</span></ins>
                           </span>
                         </a>
                       </span>
                     </span>
         </li>
-        <li class="col-md-3 col-sm-6 col-xs-12 product">
-                    <span class="product-thumb-info">
-                      <a href="shop-cart.html" class="add-to-cart-product">
-                        <span><i class="fa fa-shopping-cart"></i> 加入购物车</span>
-                      </a>
-                      <a href="shop-product-sidebar.html">
-                        <span class="product-thumb-info-image">
-                          <span class="product-thumb-info-act">
-                            <span class="product-thumb-info-act-right"><em><i class="fa fa-search-plus"></i>查看详情</em></span>
-                          </span>
-                          <img alt="" class="img-responsive" src="../../../assets/img/products/product-1.jpg">
-                        </span>
-                      </a>
-                      <span class="product-thumb-info-content">
-                        <a href="shop-product-sidebar.html">
-                          <h4>2018款新包</h4>
-                          <span class="price">
-                            <span class="amount">￥72</span>
-                          </span>
-                        </a>
-                      </span>
-                    </span>
-        </li>
-        <li class="col-md-3 col-sm-6 col-xs-12 product">
-                    <span class="product-thumb-info">
-                      <a href="shop-cart.html" class="add-to-cart-product">
-                        <span><i class="fa fa-shopping-cart"></i> 加入购物车</span>
-                      </a>
-                      <a href="shop-product-sidebar.html">
-                        <span class="product-thumb-info-image">
-                          <span class="product-thumb-info-act">
-                            <span class="product-thumb-info-act-right"><em><i class="fa fa-search-plus"></i>查看详情</em></span>
-                          </span>
-                          <img alt="" class="img-responsive" src="../../../assets/img/products/product-1.jpg">
-                        </span>
-                      </a>
-                      <span class="product-thumb-info-content">
-                        <a href="shop-product-sidebar.html">
-                          <h4>2018款夏季凉鞋</h4>
-                          <span class="price">
-                            <span class="amount">￥60</span>
-                          </span>
-                        </a>
-                      </span>
-                    </span>
-        </li>
-        <li class="col-md-3 col-sm-6 col-xs-12 product">
-                    <span class="product-thumb-info">
-                      <a href="shop-cart.html" class="add-to-cart-product">
-                        <span><i class="fa fa-shopping-cart"></i> 加入购物车</span>
-                      </a>
-                      <a href="shop-product-sidebar.html">
-                        <span class="product-thumb-info-image">
-                          <span class="product-thumb-info-act">
-                            <span class="product-thumb-info-act-right"><em><i class="fa fa-search-plus"></i>查看详情</em></span>
-                          </span>
-                          <img alt="" class="img-responsive" src="../../../assets/img/products/product-1.jpg">
-                        </span>
-                      </a>
-                      <span class="product-thumb-info-content">
-                        <a href="shop-product-sidebar.html">
-                          <h4>2018款电风扇</h4>
-                          <span class="price">
-                            <span class="amount">￥199</span>
-                          </span>
-                        </a>
-                      </span>
-                    </span>
-        </li>
-        <li class="col-md-3 col-sm-6 col-xs-12 product">
-                    <span class="product-thumb-info">
-                      <a href="shop-cart.html" class="add-to-cart-product">
-                        <span><i class="fa fa-shopping-cart"></i> 加入购物车</span>
-                      </a>
-                      <a href="shop-product-sidebar.html">
-                        <span class="product-thumb-info-image">
-                          <span class="product-thumb-info-act">
-                            <span class="product-thumb-info-act-right"><em><i class="fa fa-search-plus"></i>查看详情</em></span>
-                          </span>
-                          <img alt="" class="img-responsive" src="../../../assets/img/products/product-1.jpg">
-                        </span>
-                      </a>
-                      <span class="product-thumb-info-content">
-                        <a href="shop-product-sidebar.html">
-                          <h4>iphone7红色款</h4>
-                          <span class="price">
-                            <span class="amount">￥6689</span>
-                          </span>
-                        </a>
-                      </span>
-                    </span>
-        </li>
-        <li class="col-md-3 col-sm-6 col-xs-12 product">
-          <a href="shop-product-sidebar.html">
-            <span class="onsale">热</span>
-          </a>
-          <span class="product-thumb-info">
-                      <a href="shop-cart.html" class="add-to-cart-product">
-                        <span><i class="fa fa-shopping-cart"></i> 加入购物车</span>
-                      </a>
-                      <a href="shop-product-sidebar.html">
-                        <span class="product-thumb-info-image">
-                          <span class="product-thumb-info-act">
-                            <span class="product-thumb-info-act-right"><em><i class="fa fa-search-plus"></i>查看详情</em></span>
-                          </span>
-                          <img alt="" class="img-responsive" src="../../../assets/img/products/product-1.jpg">
-                        </span>
-                      </a>
-                      <span class="product-thumb-info-content">
-                        <a href="shop-product-sidebar.html">
-                          <h4>抖音同款变色杯</h4>
-                          <span class="price">
-                            <del><span class="amount">￥25</span></del>
-                            <ins><span class="amount">￥22</span></ins>
-                          </span>
-                        </a>
-                      </span>
-                    </span>
-        </li>
-
       </ul>
 
     </div>
@@ -170,11 +54,11 @@
     <div class="row">
       <div class="col-md-12">
         <ul class="pagination pull-right">
-          <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
-          <li class="active"><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+          <li><a disabled="disabled" class="btn"><i class="fa fa-chevron-left"></i></a></li>
+          <li class="active"><a  >1</a></li>
+          <li><a >2</a></li>
+          <li><a >3</a></li>
+          <li><a ><i class="fa fa-chevron-right"></i></a></li>
         </ul>
       </div>
     </div>

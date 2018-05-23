@@ -21,16 +21,15 @@ export class ProductComponent implements OnInit {
     private commonUtil:CommonUtil,
     private productService:ProductService
   ) {
-    let keyWord = this.routeInfo.snapshot.queryParams['keyWord'];
-    if( ! this.commonUtil.isNull(keyWord)){
-      this.productService.searchSelect(1,10,keyWord)
-        .then(res => {
-          if(res.status === this.commonConfig.RESPONSE_CODE.SUCCESS){
-            this.productList = res.data;
-            console.log(this.productList);
-          }
-        });
-    }
+    this.routeInfo.queryParams.subscribe(data=>{
+      let keyWord = data.keyWord;
+        this.productService.searchSelect(1,10,keyWord)
+          .then(res => {
+            if(res.status === this.commonConfig.RESPONSE_CODE.SUCCESS){
+              this.productList = res.data.list;
+            }
+          });
+    });
   }
 
   ngOnInit() {

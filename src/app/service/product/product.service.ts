@@ -8,9 +8,6 @@ export class ProductService {
     private httpService : HttpService
   ) { }
 
-  // searchSelect(pageNum:number,pageSize:number,keyWord?:string,categoryId?:number){
-  //   return this.httpService.HttpGet("product?pageNum="+pageNum+"&pageSize="+pageSize+"&keyWord="+keyWord+"&categoryId="+categoryId);
-  // }
   searchSelect(pageNum:number,pageSize:number,keyWord?:string,categoryId?:number){
     return this.httpService.HttpPost("product",{
       pageNum:pageNum,
@@ -20,4 +17,18 @@ export class ProductService {
     },this.httpService.formHeader);
   }
 
+}
+
+export class Product{
+  public id:number;
+  public categoryId:number;
+  public name:string;
+  public subtitle:string;
+  public mainImage:string;
+  public subImages:string;
+  public detail:string;
+  public price:number;
+  public stock:number;
+  public status:any;
+  public flag:string;
 }
