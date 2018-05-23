@@ -23,7 +23,7 @@ export class NavbarComponent implements OnInit {
 
   search(){
     if(this.searchForm.valid){
-      this.router.navigate(['/product'],{queryParams:{keyWord:this.searchForm.value}});
+      this.router.navigate(['/product'],{queryParams:{keyWord:this.searchForm.value.keyWord}});
     }
   }
 

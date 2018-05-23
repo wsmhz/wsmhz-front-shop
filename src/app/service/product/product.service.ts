@@ -8,8 +8,16 @@ export class ProductService {
     private httpService : HttpService
   ) { }
 
+  // searchSelect(pageNum:number,pageSize:number,keyWord?:string,categoryId?:number){
+  //   return this.httpService.HttpGet("product?pageNum="+pageNum+"&pageSize="+pageSize+"&keyWord="+keyWord+"&categoryId="+categoryId);
+  // }
   searchSelect(pageNum:number,pageSize:number,keyWord?:string,categoryId?:number){
-    return this.httpService.HttpGet("product?pageNum="+pageNum+"&pageSize="+pageSize+"&keyWord="+keyWord+"&categoryId="+categoryId);
+    return this.httpService.HttpPost("product",{
+      pageNum:pageNum,
+      pageSize:pageSize,
+      keyWord:keyWord,
+      categoryId:categoryId
+    },this.httpService.formHeader);
   }
 
 }
