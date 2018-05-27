@@ -10,25 +10,20 @@
         <p>.......</p>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-6">
-        <h1 class="mb-none"><strong></strong></h1>
-        <p>.......</p>
-      </div>
-    </div>
 
     <div class="row">
 
       <ul class="products product-thumb-info-list" data-plugin-masonry>
+
         <li class="col-md-3 col-sm-6 col-xs-12 product"  *ngFor="let product of productList">
           <a *ngIf="product.flag == 'HOT'">
             <span class="onsale">热销</span>
           </a>
           <span class="product-thumb-info">
-                      <a class="add-to-cart-product">
+                      <a class="add-to-cart-product" href="javaScript:">
                         <span><i class="fa fa-shopping-cart"></i> 加入购物车</span>
                       </a>
-                      <a [routerLink]="['/productDetail']">
+                      <a (click)="productDetail(product.id)">
                         <span class="product-thumb-info-image">
                           <span class="product-thumb-info-act">
                             <span class="product-thumb-info-act-right"><em><i class="fa fa-search-plus"></i>查看详情</em></span>
@@ -47,6 +42,9 @@
                       </span>
                     </span>
         </li>
+        <li class="col-md-3 col-sm-6 col-xs-12 product" *ngIf="productList.length===0">
+          <p>暂时没有您所搜索的产品</p>
+        </li>
       </ul>
 
     </div>
@@ -54,11 +52,11 @@
     <div class="row">
       <div class="col-md-12">
         <ul class="pagination pull-right">
-          <li><a disabled="disabled" class="btn"><i class="fa fa-chevron-left"></i></a></li>
-          <li class="active"><a  >1</a></li>
-          <li><a >2</a></li>
-          <li><a >3</a></li>
-          <li><a ><i class="fa fa-chevron-right"></i></a></li>
+          <li *ngIf="hasPreviousPage"><a class="btn"><i class="fa fa-chevron-left"></i></a></li>
+          <li *ngIf="!hasPreviousPage"><a class="btn" disabled="disabled"><i class="fa fa-chevron-left"></i></a></li>
+          <li class="active"><a>{{pageNum}}</a></li>
+          <li *ngIf="hasNextPage"><a class="btn"><i class="fa fa-chevron-right"></i></a></li>
+          <li *ngIf="!hasNextPage"><a class="btn" disabled="disabled"><i class="fa fa-chevron-right"></i></a></li>
         </ul>
       </div>
     </div>

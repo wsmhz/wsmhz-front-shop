@@ -17,6 +17,10 @@ export class ProductService {
     },this.httpService.formHeader);
   }
 
+  select(id:number){
+    return this.httpService.HttpGet("product/"+id);
+  }
+
 }
 
 export class Product{

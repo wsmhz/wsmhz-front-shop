@@ -25,6 +25,7 @@ import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 import {HttpService} from "./service/common/http.service";
 import {CommonUtil} from "./utils/commonUtil";
 import {CommonConfig} from "./config/commonConfig";
+import { ShippingComponent } from './component/shipping/shipping.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import {CommonConfig} from "./config/commonConfig";
     Code404Component,
     ProductDetailComponent,
     CartComponent,
-    OrderComponent
+    OrderComponent,
+    ShippingComponent
   ],
   imports: [
     BrowserModule,

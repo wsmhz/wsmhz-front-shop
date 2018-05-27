@@ -1,0 +1,83 @@
+<div class="row">
+  <div class="col-md-12">
+    <h4 class="heading-primary">收货地址</h4>
+    <div class="address-item" id="address{{i}}" (click)="choose(i,shipping.id)" *ngFor="let shipping of shippingList;let i = index;">
+      <div class="address-title">{{shipping.receiverProvince}} {{shipping.receiverCity}} {{shipping.receiverDistrict}}</div>
+      <div class="address-detail">{{shipping.receiverAddress}} ( {{shipping.receiverName}} 收 ) <p>联系方式：{{shipping.receiverMobile}}</p></div>
+      <div class="address-opera">
+        <span class="link address-update" (click)="update(shipping.id)">编辑</span>
+        <span class="link address-delete" (click)="delete(shipping.id)">删除</span>
+      </div>
+    </div>
+    <div class="address-add" (click)="add()">
+      <div class="address-new">
+        <i class="fa fa-plus"></i>
+        <div class="text">使用新地址</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="addressModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" id="formModalLabel">新增地址</h4>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="shippingForm" (ngSubmit)="save()" novalidate>
+          <div class="form-group mt-lg" [class.has-error]="shippingForm.get('receiverName').touched && shippingForm.hasError('required','receiverName')">
+            <label class="col-sm-3 control-label"><i class="start">*</i>收件人姓名</label>
+            <div class="col-sm-9">
+              <input type="text" formControlName="receiverName" [(ngModel)]="shipping.receiverName" class="form-control"/>
+              <span class="help-block" [class.hidden]="shippingForm.get('receiverName').untouched || !shippingForm.hasError('required','receiverName')">
+                收件人姓名不能为空
+             </span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-3 control-label"><i class="start">*</i>所在城市</label>
+            <div class="col-sm-9">
+              <div class="row" data-toggle="distpicker" id="distpicker">
+                <div class="col-md-4">
+                  <select class="form-control mb-md" id="province" [ngModelOptions]="{standalone: true}" [(ngModel)]="shipping.receiverProvince">
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <select class="form-control mb-md" id="city" [ngModelOptions]="{standalone: true}" [(ngModel)]="shipping.receiverCity">
+                  </select>
+                </div>
+                <div class="col-md-4">
+                  <select class="form-control mb-md" id="district" [ngModelOptions]="{standalone: true}" [(ngModel)]="shipping.receiverDistrict">
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group" [class.has-error]="shippingForm.get('receiverMobile').touched && shippingForm.hasError('required','receiverMobile')">
+            <label class="col-sm-3 control-label"><i class="start">*</i>联系方式</label>
+            <div class="col-sm-9">
+              <input type="text" formControlName="receiverMobile" [(ngModel)]="shipping.receiverMobile" class="form-control" />
+              <span class="help-block" [class.hidden]="shippingForm.get('receiverMobile').untouched || !shippingForm.hasError('required','receiverMobile')">
+                联系方式不能为空
+             </span>
+            </div>
+          </div>
+          <div class="form-group" [class.has-error]="shippingForm.get('receiverAddress').touched && shippingForm.hasError('required','receiverAddress')">
+            <label class="col-sm-3 control-label"><i class="start">*</i>详细地址</label>
+            <div class="col-sm-9">
+              <textarea rows="5" formControlName="receiverAddress" [(ngModel)]="shipping.receiverAddress" class="form-control" placeholder="请输入详细地址"></textarea>
+              <span class="help-block" [class.hidden]="shippingForm.get('receiverAddress').untouched || !shippingForm.hasError('required','receiverAddress')">
+                详细地址不能为空
+             </span>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success">保存新地址</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

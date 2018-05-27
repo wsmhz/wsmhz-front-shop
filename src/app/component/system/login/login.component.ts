@@ -1,30 +1,44 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators, FormControl} from "@angular/forms";
-import {User} from "../../../service/login/login.service";
+import {LoginService, User} from "../../../service/login/login.service";
+import {CommonConfig} from "../../../config/commonConfig";
+import {Router} from "@angular/router";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers:[
+    LoginService
+  ]
 })
 export class LoginComponent implements OnInit {
 
-  user:User;
+  user = new User();
   loginForm:FormGroup;
   constructor(
+    private loginService: LoginService,
+    private router: Router,
+    private commonConfig:CommonConfig
   ) { }
 
   ngOnInit() {
-    // this.loginForm = new FormBuilder().group({
-    //   username: [this.user.username, [Validators.required]]
-    //   // password: [this.admin.password, Validators.required]
-    // });
+    this.loginForm = new FormBuilder().group({
+      username: ["", [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      imageCode: ['', Validators.required]
+    });
   }
 
 
-  login(){
-    alert("1");
-  }
-  a(){
-    alert("a");
+  login() {
+    if (this.loginForm.valid) {
+      this.loginService.login(this.loginForm.value.username, this.loginForm.value.password, this.loginForm.value.imageCode)
+        .then(res => {
+          if(res.status === this.commonConfig.RESPONSE_CODE.SUCCESS){
+            window.localStorage.setItem("user",JSON.stringify(res.data));
+            this.router.navigate(['/home'],{queryParams:{loginFlag:true}});
+          }
+        });
+    }
   }
 }
