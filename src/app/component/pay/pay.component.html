@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <hr class="tall">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <hr class="tall">
+    </div>
+  </div>
+  <div  style="text-align: center" *ngIf="!payedFlag">
+    <h2>订单号为：{{orderNo}}</h2>
+    <p>请使用沙箱版支付宝扫码支付</p>
+    <img alt="二维码" [src]=img>
+  </div>
+  <div  style="text-align: center" *ngIf="payedFlag">
+    <h2 class="success"><span class="glyphicon glyphicon-ok"></span>  支付成功</h2>
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-3"><a href="javaScript:" [routerLink]="['/home']"><h4 class="return"><i class="fa fa-angle-double-left"></i>返回首页</h4></a></div>
+      <div class="col-md-3"> <a href="javaScript:" ><h4 class="myOrder"> 查看我的订单<i class="fa fa-angle-double-right"></i></h4></a></div>
+      <div class="col-md-3"></div>
+    </div>
+  </div>
+</div>
+
+

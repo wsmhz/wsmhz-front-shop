@@ -9,7 +9,17 @@ export class CommonUtil{
   ){}
 
   getUserInfo(){
-    return JSON.parse(window.localStorage.getItem("user"));
+    let userCache = JSON.parse(window.localStorage.getItem("user"));
+    if(this.isNull(userCache)){
+      return null;
+    }else{
+      if (new Date().getTime() - userCache.time > 1000*60*60) {//一小时
+        console.log('用户信息已过期');
+        return null;
+      }else{
+        return JSON.parse(window.localStorage.getItem("user")).user;
+      }
+    }
   }
 
   getDateFormatter(){

@@ -26,6 +26,9 @@ import {HttpService} from "./service/common/http.service";
 import {CommonUtil} from "./utils/commonUtil";
 import {CommonConfig} from "./config/commonConfig";
 import { ShippingComponent } from './component/shipping/shipping.component';
+import { PayComponent } from './component/pay/pay.component';
+import { PersonalCenterComponent } from './component/personal-center/personal-center.component';
+import { OrderCenterComponent } from './component/personal-center/order-center/order-center.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,10 @@ import { ShippingComponent } from './component/shipping/shipping.component';
     ProductDetailComponent,
     CartComponent,
     OrderComponent,
-    ShippingComponent
+    ShippingComponent,
+    PayComponent,
+    PersonalCenterComponent,
+    OrderCenterComponent
   ],
   imports: [
     BrowserModule,

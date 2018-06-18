@@ -12,4 +12,8 @@ export class CategoryService {
     return this.httpService.HttpGet("category");
   }
 
+  selectByParent(){
+    return this.httpService.HttpGet("category/0");
+  }
+
 }

@@ -59,6 +59,7 @@ export class OrderComponent implements OnInit {
         .then(res => {
           if(res.status === this.commonConfig.RESPONSE_CODE.SUCCESS){
             layer.msg("创建订单成功", {icon: 6});
+            this.router.navigate(['/pay'],{queryParams:{orderNo:res.data}});
           }
         });
     }

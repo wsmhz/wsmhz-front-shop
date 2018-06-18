@@ -8,6 +8,9 @@ import {ProductComponent} from "./component/product/product.component";
 import {ProductDetailComponent} from "./component/product-detail/product-detail.component";
 import {CartComponent} from "./component/cart/cart.component";
 import {OrderComponent} from "./component/order/order.component";
+import {PayComponent} from "./component/pay/pay.component";
+import {PersonalCenterComponent} from "./component/personal-center/personal-center.component";
+import {OrderCenterComponent} from "./component/personal-center/order-center/order-center.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -16,6 +19,11 @@ const routes: Routes = [
   {path: 'productDetail', component : ProductDetailComponent},
   {path: 'cart', component : CartComponent},
   {path: 'order', component : OrderComponent},
+  {path: 'pay', component : PayComponent},
+  {path: 'personalCenter', component : PersonalCenterComponent,
+    children:[
+      {path: '', component : OrderCenterComponent},
+    ]},
   {path: 'login', component : LoginComponent},
   {path: 'register', component : RegisterComponent},
   // {path: '**', component : Code404Component}

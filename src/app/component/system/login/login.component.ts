@@ -35,7 +35,8 @@ export class LoginComponent implements OnInit {
       this.loginService.login(this.loginForm.value.username, this.loginForm.value.password, this.loginForm.value.imageCode)
         .then(res => {
           if(res.status === this.commonConfig.RESPONSE_CODE.SUCCESS){
-            window.localStorage.setItem("user",JSON.stringify(res.data));
+            let curTime = new Date().getTime();
+            window.localStorage.setItem("user",JSON.stringify({user:res.data,time:curTime}));
             this.router.navigate(['/home'],{queryParams:{loginFlag:true}});
           }
         });

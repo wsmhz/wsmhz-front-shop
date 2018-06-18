@@ -8,12 +8,13 @@ export class ProductService {
     private httpService : HttpService
   ) { }
 
-  searchSelect(pageNum:number,pageSize:number,keyWord?:string,categoryId?:number){
+  searchSelect(pageNum:number,pageSize:number,keyWord?:string,categoryId?:number,flag?:string){
     return this.httpService.HttpPost("product",{
       pageNum:pageNum,
       pageSize:pageSize,
       keyWord:keyWord,
-      categoryId:categoryId
+      categoryId:categoryId,
+      flag:flag
     },this.httpService.formHeader);
   }
 

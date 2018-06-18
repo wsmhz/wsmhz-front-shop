@@ -89,6 +89,7 @@ export class HttpService {
       msg = '请求超时,连接服务器异常';
     }
     if (errorResponse.status === 401 && errorResponse.error.status === this.commonConfig.RESPONSE_CODE.NEED_LOGIN) {
+      window.localStorage.removeItem("user");
       this.router.navigate(["/login"]);
     }
     layer.msg(msg, {icon: 2}); // 由这里统一处理error,不需要每次都catch
