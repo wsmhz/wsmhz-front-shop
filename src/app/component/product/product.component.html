@@ -49,16 +49,6 @@
 
     </div>
 
-    <div class="row">
-      <div class="col-md-12">
-        <ul class="pagination pull-right">
-          <li *ngIf="hasPreviousPage"><a class="btn"><i class="fa fa-chevron-left"></i></a></li>
-          <li *ngIf="!hasPreviousPage"><a class="btn" disabled="disabled"><i class="fa fa-chevron-left"></i></a></li>
-          <li class="active"><a>{{pageNum}}</a></li>
-          <li *ngIf="hasNextPage"><a class="btn"><i class="fa fa-chevron-right"></i></a></li>
-          <li *ngIf="!hasNextPage"><a class="btn" disabled="disabled"><i class="fa fa-chevron-right"></i></a></li>
-        </ul>
-      </div>
-    </div>
+  <div style="text-align: center"> <ul id="pageLimit"></ul> </div>
 
 </div>

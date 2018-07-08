@@ -51,7 +51,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   sub(){
-    if(this.quantity !== 0){
+    if(this.quantity !== 1){
       this.quantity -= 1;
     }
   }

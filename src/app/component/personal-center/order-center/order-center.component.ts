@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {OrderService} from "../../../service/order/order.service";
 import {CommonUtil} from "../../../utils/commonUtil";
 import {CommonConfig} from "../../../config/commonConfig";
+import {PageLimit} from "../../../utils/functions/functionUtil";
 
 declare var $:any;
 @Component({
@@ -15,7 +16,9 @@ declare var $:any;
 export class OrderCenterComponent implements OnInit {
 
   orderList = [];
-  serarchOrderNo:number;
+  searchOrderNo:number;
+
+  pages = 1;
   constructor(
     private orderService:OrderService,
     private commonUtil:CommonUtil,
@@ -23,9 +26,8 @@ export class OrderCenterComponent implements OnInit {
   ) { }
 
   search(){
-    if( ! this.commonUtil.isNull(this.serarchOrderNo)){
-      this.initOrderList(1,10,$.trim(this.serarchOrderNo),null);
-    }
+      this.initOrderList(1,10,$.trim(this.searchOrderNo),null);
+
   }
 
   ngOnInit() {
@@ -35,6 +37,9 @@ export class OrderCenterComponent implements OnInit {
       });
     });
     this.initOrderList(1,10,null,null);
+
+
+
   }
 
   initOrderList(pageNum:number,pageSize:number,orderNo?:number,status?:string){
@@ -42,9 +47,16 @@ export class OrderCenterComponent implements OnInit {
       .then(res => {
         if(res.status === this.commonConfig.RESPONSE_CODE.SUCCESS){
           this.orderList = res.data.list;
+          this.pages = res.data.pages;
+
+          PageLimit(1,this.pages, this.pages >=5 ? 5 : this.pages,(page) =>{
+            this.initOrderList(page,10,orderNo,status);
+          });
         }
       });
   }
+
+
 
 
 

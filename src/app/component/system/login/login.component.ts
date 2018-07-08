@@ -13,6 +13,7 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
 
+  codeImgSrc = "/code/image";
   user = new User();
   loginForm:FormGroup;
   constructor(
@@ -29,6 +30,13 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  changeCode(){
+    this.codeImgSrc = "";
+    setTimeout(()=>{
+      this.codeImgSrc = "/code/image";
+    },1);
+  }
+
 
   login() {
     if (this.loginForm.valid) {
@@ -39,7 +47,9 @@ export class LoginComponent implements OnInit {
             window.localStorage.setItem("user",JSON.stringify({user:res.data,time:curTime}));
             this.router.navigate(['/home'],{queryParams:{loginFlag:true}});
           }
-        });
+        }).catch(error=>{
+            this.changeCode();
+      });
     }
   }
 }

@@ -60,4 +60,8 @@ export class HotComponent implements OnInit {
       });
   }
 
+  productDetail(id:number){
+    this.router.navigate(['/productDetail'],{queryParams:{id:id}});
+  }
+
 }

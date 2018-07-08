@@ -60,7 +60,7 @@
                       <div class="col-md-12" [class.has-error]="loginForm.get('imageCode').touched && loginForm.hasError('required',['imageCode'])">
                         <label>验证码</label>
                         <input formControlName="imageCode" style="width: 60%" class="form-control" placeholder="验证码"/>
-                        <img src="/code/image" style="position: absolute;right: 10%;bottom: 10%;" alt="验证码" >
+                        <img [src]="codeImgSrc" style="position: absolute;right: 20%;bottom: 10%;" alt="验证码" ><a href="javaScript:" style="position: absolute;right: 10%;bottom: 10%;" (click)="changeCode()">换一个</a>
                         <span class="help-block" [class.hidden]="loginForm.get('imageCode').untouched || !loginForm.hasError('required',['imageCode'])">
                             验证码不能为空
                         </span>

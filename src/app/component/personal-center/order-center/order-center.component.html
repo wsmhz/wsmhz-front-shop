@@ -12,7 +12,7 @@
       </div>
       <div class="uc-search">
         <form>
-          <input type="text" style="height: 40px;" class="sch-input" [ngModelOptions]="{standalone: true}" [(ngModel)]="serarchOrderNo" placeholder="输入订单号" />
+          <input type="text" style="height: 40px;" class="sch-input" [ngModelOptions]="{standalone: true}" [(ngModel)]="searchOrderNo" placeholder="输入订单号" />
           <button class="sch-btn" (click)="search()"><i class="iconfont icon-search"></i></button>
         </form>
       </div>
@@ -61,21 +61,16 @@
            </td>
          </tr>
        </div>
+       <tr *ngIf="orderList.length == 0">
+         <td colspan="4">
+           <span class="center">没有找到相关订单</span>
+         </td>
+       </tr>
      </tbody>
 
     </table>
 
-    <div class="ta-c">
-      <ul class="pagination">
-        <li class="disabled"><a href="javaScript:" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-        <li class="active"><a href="javaScript:">1 <span class="sr-only">(current)</span></a></li>
-        <li><a href="javaScript:">2</a></li>
-        <li><a href="javaScript:">3</a></li>
-        <li><a href="javaScript:">4</a></li>
-        <li><a href="javaScript:">5</a></li>
-        <li><a href="javaScript:" aria-label="Next"><span aria-hidden="true">»</span></a></li>
-      </ul>
-    </div>
+    <div style="text-align: center"> <ul id="pageLimit"></ul> </div>
   </div>
 </div>
 
