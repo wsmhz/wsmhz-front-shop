@@ -9,11 +9,11 @@ export class CategoryService {
   ) { }
 
   selectAll(){
-    return this.httpService.HttpGet("category");
+    return this.httpService.HttpGet("api/category");
   }
 
   selectByParent(){
-    return this.httpService.HttpGet("category/0");
+    return this.httpService.HttpGet("api/category/0");
   }
 
 }
