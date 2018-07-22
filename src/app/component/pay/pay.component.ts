@@ -41,6 +41,7 @@ export class PayComponent implements OnInit,OnDestroy{
         this.orderService.pay(order).then(response => {
           if(response.status === this.commonConfig.RESPONSE_CODE.SUCCESS){
               this.img = response.data.qrCodeUrl;
+              console.log(this.img);
               this.orderNo = response.data.orderNo;
               this.queryStatusTimer = setInterval(()=>{
                 this.orderService.queryStatus(orderNo).then(resp => {

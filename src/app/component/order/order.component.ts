@@ -52,16 +52,24 @@ export class OrderComponent implements OnInit {
     if(this.commonUtil.isNull(this.user.id)){
       this.router.navigate(['/login']);
     }else{
+      let id = layer.msg('正在生成订单中', {
+        icon: 16,
+        shade: 0.4,
+        time:false //取消自动关闭
+      });
       let order = new Order();
       order.shippingId = this.shippingId;
       order.userId = this.user.id;
       this.orderService.insert(order)
         .then(res => {
           if(res.status === this.commonConfig.RESPONSE_CODE.SUCCESS){
+            layer.close(id);//手动关闭
             layer.msg("创建订单成功", {icon: 6});
             this.router.navigate(['/pay'],{queryParams:{orderNo:res.data}});
+          }else{
+            layer.close(id);//手动关闭
           }
-        });
+        }).catch(()=>{layer.close(id);});
     }
   }
 
