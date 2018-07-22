@@ -13,7 +13,7 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
 
-  codeImgSrc = "/code/image";
+  codeImgSrc = "system/code/image";
   user = new User();
   loginForm:FormGroup;
   constructor(
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
   changeCode(){
     this.codeImgSrc = "";
     setTimeout(()=>{
-      this.codeImgSrc = "/code/image";
+      this.codeImgSrc = "system/code/image";
     },1);
   }
 

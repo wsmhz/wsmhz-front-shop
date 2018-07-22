@@ -9,23 +9,23 @@ export class ShippingService {
   ) { }
 
   selectAll(){
-    return this.httpService.HttpGet("shipping");
+    return this.httpService.HttpGet("api/shipping");
   }
 
   select(id:number){
-    return this.httpService.HttpGet("shipping/"+id);
+    return this.httpService.HttpGet("api/shipping/"+id);
   }
 
   insert(shipping:Shipping){
-    return this.httpService.HttpPost("shipping",shipping);
+    return this.httpService.HttpPost("api/shipping",shipping);
   }
 
   update(shipping:Shipping){
-    return this.httpService.HttpPut("shipping",shipping);
+    return this.httpService.HttpPut("api/shipping",shipping);
   }
 
   delete(id:number){
-    return this.httpService.HttpDelete("shipping/"+id);
+    return this.httpService.HttpDelete("api/shipping/"+id);
   }
 
 }

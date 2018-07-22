@@ -11,35 +11,35 @@ export class OrderService {
   selectAll(pageNum:number,pageSize:number,orderNo?:number,status?:string){
     let url;
     if(orderNo !== null){
-      url = "order/page?pageNum="+pageNum+"&pageSize="+pageSize+"&orderNo="+orderNo;
+      url = "api/order/page?pageNum="+pageNum+"&pageSize="+pageSize+"&orderNo="+orderNo;
     }else if(status !== null){
-      url = "order/page?pageNum="+pageNum+"&pageSize="+pageSize+"&status="+status;
+      url = "api/order/page?pageNum="+pageNum+"&pageSize="+pageSize+"&status="+status;
     }else if(orderNo !== null && status !== null){
-      url = "order/page?pageNum="+pageNum+"&pageSize="+pageSize+"&orderNo="+orderNo+"&status="+status;
+      url = "api/order/page?pageNum="+pageNum+"&pageSize="+pageSize+"&orderNo="+orderNo+"&status="+status;
     }else{
-      url = "order/page?pageNum="+pageNum+"&pageSize="+pageSize;
+      url = "api/order/page?pageNum="+pageNum+"&pageSize="+pageSize;
     }
     return this.httpService.HttpGet(url);
   }
 
   select(id:number){
-    return this.httpService.HttpGet("order/"+id);
+    return this.httpService.HttpGet("api/order/"+id);
   }
 
   queryStatus(orderNo:number){
-    return this.httpService.HttpGet("order/status/"+orderNo);
+    return this.httpService.HttpGet("api/order/status/"+orderNo);
   }
 
   insert(order:Order){
-    return this.httpService.HttpPost("order",order);
+    return this.httpService.HttpPost("api/order",order);
   }
 
   pay(order:Order){
-    return this.httpService.HttpPost("order/pay",order);
+    return this.httpService.HttpPost("api/order/pay",order);
   }
 
   update(order:Order){
-    return this.httpService.HttpPut("order",order);
+    return this.httpService.HttpPut("api/order",order);
   }
 
 }
