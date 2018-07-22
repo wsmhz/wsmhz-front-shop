@@ -18,7 +18,7 @@ export class PayComponent implements OnInit,OnDestroy{
   user = this.commonUtil.getUserInfo();
   img = "";
   orderNo = "";
-  payedFlag = true;
+  payedFlag = false;
   queryStatusTimer:any;
   constructor(
     private commonUtil:CommonUtil,
@@ -29,33 +29,33 @@ export class PayComponent implements OnInit,OnDestroy{
   ) {}
 
   ngOnInit() {
-    // this.payedFlag = false;
-    // this.routeInfo.queryParams.subscribe(data=>{
-    //   let orderNo = data.orderNo;
-    //   if(this.commonUtil.isNull(orderNo)){
-    //     layer.msg("订单号为空", {icon: 5});
-    //   }else{
-    //     let order = new Order();
-    //     order.userId = this.user.id;
-    //     order.orderNo = orderNo;
-    //     this.orderService.pay(order).then(response => {
-    //       if(response.status === this.commonConfig.RESPONSE_CODE.SUCCESS){
-    //           this.img = response.data.qrCodeUrl;
-    //           this.orderNo = response.data.orderNo;
-    //           this.queryStatusTimer = setInterval(()=>{
-    //             this.orderService.queryStatus(orderNo).then(resp => {
-    //               if(resp.status === this.commonConfig.RESPONSE_CODE.SUCCESS){
-    //                 if((!this.commonUtil.isNull(resp.data)) && resp.data >= 20){
-    //                   clearInterval(this.queryStatusTimer);
-    //                   this.payedFlag = true;
-    //                 }
-    //               }
-    //             });
-    //           },1500);
-    //       }
-    //     });
-    //   }
-    // });
+    this.payedFlag = false;
+    this.routeInfo.queryParams.subscribe(data=>{
+      let orderNo = data.orderNo;
+      if(this.commonUtil.isNull(orderNo)){
+        layer.msg("订单号为空", {icon: 5});
+      }else{
+        let order = new Order();
+        order.userId = this.user.id;
+        order.orderNo = orderNo;
+        this.orderService.pay(order).then(response => {
+          if(response.status === this.commonConfig.RESPONSE_CODE.SUCCESS){
+              this.img = response.data.qrCodeUrl;
+              this.orderNo = response.data.orderNo;
+              this.queryStatusTimer = setInterval(()=>{
+                this.orderService.queryStatus(orderNo).then(resp => {
+                  if(resp.status === this.commonConfig.RESPONSE_CODE.SUCCESS){
+                    if((!this.commonUtil.isNull(resp.data)) && resp.data >= 20){
+                      clearInterval(this.queryStatusTimer);
+                      this.payedFlag = true;
+                    }
+                  }
+                });
+              },1500);
+          }
+        });
+      }
+    });
   }
 
   ngOnDestroy(): void {
