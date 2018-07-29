@@ -4,13 +4,16 @@ import {CommonUtil} from "../../utils/commonUtil";
 import {CommonConfig} from "../../config/commonConfig";
 import {ProductService} from "../../service/product/product.service";
 import {PageLimit} from "../../utils/functions/functionUtil";
+import {CartService} from "../../service/cart/cart.service";
 
+declare var layer:any;
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css'],
   providers:[
-    ProductService
+    ProductService,
+    CartService
   ]
 })
 export class ProductComponent implements OnInit {
@@ -23,6 +26,7 @@ export class ProductComponent implements OnInit {
     private commonConfig:CommonConfig,
     private commonUtil:CommonUtil,
     private productService:ProductService,
+    private cartService:CartService,
     private router:Router,
   ) {
     this.routeInfo.queryParams.subscribe(data=>{
@@ -52,6 +56,27 @@ export class ProductComponent implements OnInit {
           });
         }
       });
+  }
+
+  addToCart(productId:number){
+    let user = this.commonUtil.getUserInfo();
+    if(this.commonUtil.isNull(user)){
+      this.router.navigate(["/login"]);
+    }else{
+      this.cartService.insert(user.id,productId,1)
+        .then(res => {
+          if(res.status === this.commonConfig.RESPONSE_CODE.SUCCESS){
+            layer.msg('成功加入购物车', {
+              time: 0 //不自动关闭
+              ,btn: ['查看购物车', '继续购物']
+              ,yes: (index)=>{
+                layer.close(index);
+                this.router.navigate(['/cart']);
+              }
+            });
+          }
+        });
+    }
   }
 
 

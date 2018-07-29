@@ -42,7 +42,7 @@
                   <div class="row">
                     <div class="form-group">
                       <div class="col-md-12" [class.has-error]="loginForm.get('password').touched && (loginForm.hasError('minlength',['password']) || loginForm.hasError('required',['password']))">
-                        <a class="pull-right" href="#">(忘记密码?)</a>
+                        <a class="pull-right" href="javaScript:">(忘记密码?)</a>
                         <label>密码</label>
                         <input type="password" formControlName="password" [(ngModel)]="user.password" class="form-control">
                         <span class="help-block" [class.hidden]="loginForm.get('password').untouched || !loginForm.hasError('required',['password'])">

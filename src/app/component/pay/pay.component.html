@@ -13,7 +13,6 @@
     <h2>订单号为：{{orderNo}}</h2>
     <p>请使用沙箱版支付宝扫码支付</p>
     <img [src]=img>
-    <div  style="text-align: center" *ngIf="!payedFlag">正在生成订单二维码中···</div>
   </div>
   <div  style="text-align: center" *ngIf="payedFlag">
     <h2 class="success"><span class="glyphicon glyphicon-ok"></span>  支付成功</h2>

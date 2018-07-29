@@ -43,9 +43,15 @@ export class LoginComponent implements OnInit {
       this.loginService.login(this.loginForm.value.username, this.loginForm.value.password, this.loginForm.value.imageCode)
         .then(res => {
           if(res.status === this.commonConfig.RESPONSE_CODE.SUCCESS){
-            let curTime = new Date().getTime();
-            window.localStorage.setItem("user",JSON.stringify({user:res.data,time:curTime}));
-            this.router.navigate(['/home'],{queryParams:{loginFlag:true}});
+            if (typeof localStorage === 'object') {  //测试该设备环境是否支持缓存
+              try {
+                let curTime = new Date().getTime();
+                localStorage.setItem("user",JSON.stringify({user:res.data,time:curTime}));
+                this.router.navigate(['/home'],{queryParams:{loginFlag:true}});
+              } catch (e) {
+                alert('您处于无痕浏览，无法为您保存信息，请关闭无痕模式后重新登陆');
+              }
+            }
           }
         }).catch(error=>{
             this.changeCode();

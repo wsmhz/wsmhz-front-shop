@@ -4,11 +4,11 @@
   <div class="uc-panel-bd">
     <div class="uc-sort">
       <div class="uc-tabs">
-        <a class="item active" href="javaScript:" (click)="initOrderList(1,10,null,null)">所有订单</a>
-        <a class="item" href="javaScript:" (click)="initOrderList(1,10,null,'NO_PAY')">待付款</a>
-        <a class="item" href="javaScript:" (click)="initOrderList(1,10,null,'PAID')">待发货</a>
-        <a class="item" href="javaScript:" (click)="initOrderList(1,10,null,'SHIPPED')">待收货</a>
-        <a class="item" href="javaScript:" (click)="initOrderList(1,10,null,'ORDER_SUCCESS')">待评价</a>
+        <a class="item active" href="javascript:" (click)="initOrderList(1,10,null,null)">所有订单</a>
+        <a class="item" href="javascript:" (click)="initOrderList(1,10,null,'NO_PAY')">待付款</a>
+        <a class="item" href="javascript:" (click)="initOrderList(1,10,null,'PAID')">待发货</a>
+        <a class="item" href="javascript:" (click)="initOrderList(1,10,null,'SHIPPED')">待收货</a>
+        <a class="item" href="javascript:" (click)="initOrderList(1,10,null,'ORDER_SUCCESS')">待评价</a>
       </div>
       <div class="uc-search">
         <form>
@@ -27,10 +27,11 @@
      <tbody>
        <div *ngFor="let order of orderList">
          <tr class="hd order-meta" >
-           <td colspan="4">
+           <td colspan="3">
              <div class="left">创建时间：{{order.createTime | date: 'yyyy-MM-dd HH:mm:ss'}} &nbsp;&nbsp;订单号: {{order.orderNo}}</div>
              <span class="center">总价：<span class="text-theme fwb">{{order.payment}}元</span></span>
            </td>
+           <td>{{order.statusDesc}}</td>
            <td>
              <div class="right"><span class="del iconfont icon-shanchu"></span></div>
            </td>
@@ -43,7 +44,7 @@
                  <div>{{orderItem.productName}}</div>
                </div>
              </div>
-             <a class="text-info refund" style="margin-top: 15px;" href="javaScript:" *ngIf="order.statusCode>=20 && order.statusCode<50">退款/货</a>
+             <a class="text-info refund" style="margin-top: 15px;" href="javascript:" *ngIf="order.statusCode>=20 && order.statusCode<50">退款/货</a>
            </td>
            <td>
              x<span>{{orderItem.quantity}}</span>
@@ -53,11 +54,11 @@
            </td>
            <td >
              <span class="status" *ngIf="order.statusCode==50">快件已签收</span><br>
-             <a class="text-info" href="javaScript:" *ngIf="order.statusCode>=40 && order.statusCode<=50">查看物流</a>
+             <a class="text-info" href="javascript:" *ngIf="order.statusCode>=40 && order.statusCode<=50">查看物流</a>
            </td>
            <td style="width: 10%">
-             <a href="javaScript:" class="ui-btn-theme uc-btn-md">订单详情</a><br><br>
-             <a href="javaScript:" class="ui-btn-low uc-btn-md" *ngIf="order.statusCode==50">追加评论</a>
+             <a href="javascript:" class="ui-btn-theme uc-btn-md" (click)="orderDetail(order.id)">订单详情</a><br><br>
+             <a href="javascript:" class="ui-btn-low uc-btn-md" *ngIf="order.statusCode==50">追加评论</a>
            </td>
          </tr>
        </div>

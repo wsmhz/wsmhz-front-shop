@@ -30,6 +30,10 @@ export class OrderService {
     return this.httpService.HttpGet("api/order/status/"+orderNo);
   }
 
+  queryCreateOrder(queryKey:number){
+    return this.httpService.HttpGet("api/order/queue/"+queryKey);
+  }
+
   insert(order:Order){
     return this.httpService.HttpPost("api/order",order);
   }

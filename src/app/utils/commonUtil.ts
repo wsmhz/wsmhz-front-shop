@@ -9,7 +9,7 @@ export class CommonUtil{
   ){}
 
   getUserInfo(){
-    let userCache = JSON.parse(window.localStorage.getItem("user"));
+    let userCache = JSON.parse(localStorage.getItem("user"));
     if(this.isNull(userCache)){
       return null;
     }else{
@@ -17,7 +17,7 @@ export class CommonUtil{
         console.log('用户信息已过期');
         return null;
       }else{
-        return JSON.parse(window.localStorage.getItem("user")).user;
+        return JSON.parse(localStorage.getItem("user")).user;
       }
     }
   }
