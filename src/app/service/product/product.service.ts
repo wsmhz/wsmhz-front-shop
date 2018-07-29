@@ -9,7 +9,7 @@ export class ProductService {
   ) { }
 
   searchSelect(pageNum:number,pageSize:number,keyWord?:string,categoryId?:number,flag?:string){
-    return this.httpService.HttpPost("product",{
+    return this.httpService.HttpPost("api/product",{
       pageNum:pageNum,
       pageSize:pageSize,
       keyWord:keyWord,
@@ -19,7 +19,7 @@ export class ProductService {
   }
 
   select(id:number){
-    return this.httpService.HttpGet("product/"+id);
+    return this.httpService.HttpGet("api/product/"+id);
   }
 
 }

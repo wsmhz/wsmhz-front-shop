@@ -6,26 +6,26 @@ export class CartService {
 
   constructor(
     private httpService : HttpService
-  ) { }
+  ) { } 
 
   select(id:number){
-    return this.httpService.HttpGet("product/"+id);
+    return this.httpService.HttpGet("api/product/"+id);
   }
 
   delete(id:number){
-    return this.httpService.HttpDelete("cart/"+id);
+    return this.httpService.HttpDelete("api/cart/"+id);
   }
 
   selectAll(userId:number){
-    return this.httpService.HttpGet("cart/"+userId);
+    return this.httpService.HttpGet("api/cart/"+userId);
   }
 
   selectAllChecked(userId:number){
-    return this.httpService.HttpGet("cart/"+userId+"/checked");
+    return this.httpService.HttpGet("api/cart/"+userId+"/checked");
   }
 
   insert(userId:number,productId:number,quantity:number){
-    return this.httpService.HttpPost("cart",{
+    return this.httpService.HttpPost("api/cart",{
       userId:userId,
       productId:productId,
       quantity:quantity,
@@ -34,14 +34,14 @@ export class CartService {
   }
 
   update(id:number,quantity:number){
-    return this.httpService.HttpPut("cart",{
+    return this.httpService.HttpPut("api/cart",{
       id:id,
       quantity:quantity
     });
   }
 
   updateChecked(id:number,checked:boolean){
-    return this.httpService.HttpPut("cart",{
+    return this.httpService.HttpPut("api/cart",{
       id:id,
       checked:checked
     });

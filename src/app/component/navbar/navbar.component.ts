@@ -66,7 +66,7 @@ export class NavbarComponent implements OnInit {
     this.loginService.logout()
       .then(res=>{
         if(res.status === this.commonConfig.RESPONSE_CODE.SUCCESS){
-          window.localStorage.removeItem("user");
+          localStorage.removeItem("user");
           this.user = this.commonUtil.getUserInfo();
           this.router.navigate(['login']);
         }

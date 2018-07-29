@@ -11,6 +11,7 @@ import {OrderComponent} from "./component/order/order.component";
 import {PayComponent} from "./component/pay/pay.component";
 import {PersonalCenterComponent} from "./component/personal-center/personal-center.component";
 import {OrderCenterComponent} from "./component/personal-center/order-center/order-center.component";
+import {OrderDetailComponent} from "./component/personal-center/order-center/order-detail/order-detail.component";
 
 const routes: Routes = [
   {path: '', redirectTo: '/home', pathMatch: 'full'},
@@ -23,10 +24,11 @@ const routes: Routes = [
   {path: 'personalCenter', component : PersonalCenterComponent,
     children:[
       {path: '', component : OrderCenterComponent},
+      {path: 'orderDetail', component : OrderDetailComponent}
     ]},
   {path: 'login', component : LoginComponent},
   {path: 'register', component : RegisterComponent},
-  // {path: '**', component : Code404Component}
+  {path: '**', component : Code404Component}
 ];
 
 @NgModule({

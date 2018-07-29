@@ -27,11 +27,11 @@
       </div>
       <div class="modal-body">
         <form [formGroup]="shippingForm" (ngSubmit)="save()" novalidate>
-          <div class="form-group mt-lg" [class.has-error]="shippingForm.get('receiverName').touched && shippingForm.hasError('required','receiverName')">
+          <div class="form-group mt-lg" [class.has-error]="shippingForm.get('receiverName').touched && shippingForm.hasError('required',['receiverName'])">
             <label class="col-sm-3 control-label"><i class="start">*</i>收件人姓名</label>
             <div class="col-sm-9">
               <input type="text" formControlName="receiverName" [(ngModel)]="shipping.receiverName" class="form-control"/>
-              <span class="help-block" [class.hidden]="shippingForm.get('receiverName').untouched || !shippingForm.hasError('required','receiverName')">
+              <span class="help-block" [class.hidden]="shippingForm.get('receiverName').untouched || !shippingForm.hasError('required',['receiverName'])">
                 收件人姓名不能为空
              </span>
             </div>
@@ -55,20 +55,20 @@
               </div>
             </div>
           </div>
-          <div class="form-group" [class.has-error]="shippingForm.get('receiverMobile').touched && shippingForm.hasError('required','receiverMobile')">
+          <div class="form-group" [class.has-error]="shippingForm.get('receiverMobile').touched && shippingForm.hasError('required',['receiverMobile'])">
             <label class="col-sm-3 control-label"><i class="start">*</i>联系方式</label>
             <div class="col-sm-9">
               <input type="text" formControlName="receiverMobile" [(ngModel)]="shipping.receiverMobile" class="form-control" />
-              <span class="help-block" [class.hidden]="shippingForm.get('receiverMobile').untouched || !shippingForm.hasError('required','receiverMobile')">
+              <span class="help-block" [class.hidden]="shippingForm.get('receiverMobile').untouched || !shippingForm.hasError('required',['receiverMobile'])">
                 联系方式不能为空
              </span>
             </div>
           </div>
-          <div class="form-group" [class.has-error]="shippingForm.get('receiverAddress').touched && shippingForm.hasError('required','receiverAddress')">
+          <div class="form-group" [class.has-error]="shippingForm.get('receiverAddress').touched && shippingForm.hasError('required',['receiverAddress'])">
             <label class="col-sm-3 control-label"><i class="start">*</i>详细地址</label>
             <div class="col-sm-9">
               <textarea rows="5" formControlName="receiverAddress" [(ngModel)]="shipping.receiverAddress" class="form-control" placeholder="请输入详细地址"></textarea>
-              <span class="help-block" [class.hidden]="shippingForm.get('receiverAddress').untouched || !shippingForm.hasError('required','receiverAddress')">
+              <span class="help-block" [class.hidden]="shippingForm.get('receiverAddress').untouched || !shippingForm.hasError('required',['receiverAddress'])">
                 详细地址不能为空
              </span>
             </div>

@@ -30,10 +30,10 @@
                 <form [formGroup]="registerForm" (ngSubmit)="register()" novalidate>
                   <div class="row">
                     <div class="form-group">
-                      <div class="col-md-6" [class.has-error]="registerForm.get('username').touched && registerForm.hasError('required','username')">
+                      <div class="col-md-6" [class.has-error]="registerForm.get('username').touched && registerForm.hasError('required',['username'])">
                         <label>用户名</label>
                         <input type="text" formControlName="username" [(ngModel)]="user.username" class="form-control input-lg" placeholder="账号">
-                        <span class="help-block" [class.hidden]="registerForm.get('username').untouched || !registerForm.hasError('required','username')">
+                        <span class="help-block" [class.hidden]="registerForm.get('username').untouched || !registerForm.hasError('required',['username'])">
                          用户名不能为空
                         </span>
                       </div>
@@ -42,21 +42,21 @@
                   <div class="row">
                     <div formGroupName="passwordsGroup">
                       <div class="form-group">
-                        <div class="col-md-3" [class.has-error]="registerForm.get(['passwordsGroup','password']).touched && (registerForm.hasError('minlength',['passwordsGroup','password']) || registerForm.hasError('required',['passwordsGroup','password']))">
+                        <div class="col-md-3" [class.has-error]="registerForm.get(['passwordsGroup','password']).touched && (registerForm.hasError('minlength',['passwordsGroup',['password']]) || registerForm.hasError('required',['passwordsGroup',['password']]))">
                           <label>密码</label>
                           <input type="password" formControlName="password" [(ngModel)]="user.password" class="form-control input-lg">
-                          <span class="help-block" [class.hidden]="registerForm.get(['passwordsGroup','password']).untouched || !registerForm.hasError('required',['passwordsGroup','password'])">
+                          <span class="help-block" [class.hidden]="registerForm.get(['passwordsGroup','password']).untouched || !registerForm.hasError('required',['passwordsGroup',['password']])">
                             密码不能为空
                           </span>
-                          <span class="help-block" [class.hidden]="registerForm.get(['passwordsGroup','password']).untouched || !registerForm.hasError('minlength',['passwordsGroup','password'])">
+                          <span class="help-block" [class.hidden]="registerForm.get(['passwordsGroup','password']).untouched || !registerForm.hasError('minlength',['passwordsGroup',['password']])">
                             请至少输入6位数
                           </span>
                         </div>
-                        <div class="col-md-3" [class.has-error]="registerForm.get('passwordsGroup').touched && registerForm.hasError('equal', 'passwordsGroup')">
+                        <div class="col-md-3" [class.has-error]="registerForm.get('passwordsGroup').touched && registerForm.hasError('equal', ['passwordsGroup'])">
                           <label>确认密码</label>
                           <input type="password" formControlName="pconfirm" [(ngModel)]="user.pconfirm" class="form-control input-lg">
-                          <div [hidden]="!registerForm.hasError('equal', 'passwordsGroup')">
-                            {{registerForm.getError('equal', 'passwordsGroup')?.description}}
+                          <div [hidden]="!registerForm.hasError('equal', ['passwordsGroup'])">
+                            {{registerForm.getError('equal', ['passwordsGroup'])?.description}}
                           </div>
                         </div>
                       </div>

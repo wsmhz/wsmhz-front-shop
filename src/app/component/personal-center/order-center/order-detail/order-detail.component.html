@@ -1,0 +1,69 @@
+<div class="uc-panel">
+  <div class="uc-bigtit">订单详情</div>
+  <div class="uc-panel-bd">
+    <div class="order-detail">
+      <div class="od-hd">
+        <div class="fl">
+          <span class="tit">订单号：</span><span>{{orderVo.orderNo}}</span>
+        </div>
+        <div class="fr">
+          <a href="javascript:" class="ui-btn-low ui-btn-hollow uc-btn-md" *ngIf="orderVo.status == 'NO_PAY'" (click)="cancel(orderVo.id,orderVo.orderNo)">取消订单</a>
+          <a href="javascript:" class="ui-btn-theme uc-btn-md" *ngIf="orderVo.status == 'NO_PAY'" (click)="toPay(orderVo.orderNo)">立即支付</a>
+        </div>
+      </div>
+      <div class="od-status">
+        <div class="tit">{{orderVo.statusDesc}}</div>
+      </div>
+      <div class="od-percent">
+        <div class="col status NO_PAY" ><div class="inner">下单<span class="time">{{orderVo.createTime | date: 'yyyy-MM-dd HH:mm:ss'}}</span></div></div>
+        <div class="col col2 status PAID"><div class="inner">付款<span class="time">{{orderVo.paymentTime | date: 'yyyy-MM-dd HH:mm:ss'}}</span></div></div>
+        <div class="col col3 status SHIPPED"><div class="inner">发货<span class="time">{{orderVo.sendTime | date: 'yyyy-MM-dd HH:mm:ss'}}</span></div></div>
+        <div class="col col4 status ORDER_SUCCESS"><div class="inner">交易成功<span class="time">{{orderVo.endTime | date: 'yyyy-MM-dd HH:mm:ss'}}</span></div></div>
+      </div>
+      <div class="od-pdt">
+        <div class="item" *ngFor="let orderItem of orderVo.orderItemList">
+          <img src={{orderItem.productImage}} class="figure" />
+          <div class="pname">{{orderItem.productName}}</div>
+          <div class="price">{{orderItem.currentUnitPrice}}元×{{orderItem.quantity}}</div>
+        </div>
+      </div>
+      <div class="od-info">
+        <div class="item">
+          <div class="tit">
+            收货信息
+          </div>
+          <div class="meta">
+            <div>姓&emsp;&emsp;名：{{orderVo.shipping.receiverName}}</div>
+            <div>联系电话：{{orderVo.shipping.receiverMobile}}</div>
+            <div>收货地址：{{orderVo.shipping.receiverProvince}}{{orderVo.shipping.receiverCity}}{{orderVo.shipping.receiverDistrict}}{{orderVo.shipping.receiverAddress}}</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="tit">
+            支付方式
+          </div>
+          <div class="meta">
+            <div>支付方式：{{orderVo.paymentTypeDesc}}</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="od-count">
+        <div class="inner">
+          <div class="item">
+            <div class="tit">订单总价：</div>
+            <div class="val">{{orderVo.payment}}元</div>
+          </div>
+          <div class="item">
+            <div class="tit">运&emsp;&emsp;费：</div>
+            <div class="val">{{orderVo.postage}}元</div>
+          </div>
+          <div class="item last">
+            <div class="tit">实付金额：</div>
+            <div class="val"><span class="strong">{{orderVo.payment}}</span>元</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -30,10 +30,10 @@
                 <form [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
                   <div class="row">
                     <div class="form-group">
-                      <div class="col-md-12" [class.has-error]="loginForm.get('username').touched && loginForm.hasError('required','username')">
+                      <div class="col-md-12" [class.has-error]="loginForm.get('username').touched && loginForm.hasError('required',['username'])">
                         <label>用户名</label>
                         <input formControlName="username" [(ngModel)]="user.username" type="text" class="form-control" placeholder="账号/手机号/邮箱">
-                        <span class="help-block" [class.hidden]="loginForm.get('username').untouched || !loginForm.hasError('required','username')">
+                        <span class="help-block" [class.hidden]="loginForm.get('username').untouched || !loginForm.hasError('required',['username'])">
                          用户名不能为空
                         </span>
                       </div>
@@ -41,14 +41,14 @@
                   </div>
                   <div class="row">
                     <div class="form-group">
-                      <div class="col-md-12" [class.has-error]="loginForm.get('password').touched && (loginForm.hasError('minlength','password') || loginForm.hasError('required','password'))">
-                        <a class="pull-right" href="#">(忘记密码?)</a>
+                      <div class="col-md-12" [class.has-error]="loginForm.get('password').touched && (loginForm.hasError('minlength',['password']) || loginForm.hasError('required',['password']))">
+                        <a class="pull-right" href="javaScript:">(忘记密码?)</a>
                         <label>密码</label>
                         <input type="password" formControlName="password" [(ngModel)]="user.password" class="form-control">
-                        <span class="help-block" [class.hidden]="loginForm.get('password').untouched || !loginForm.hasError('required','password')">
+                        <span class="help-block" [class.hidden]="loginForm.get('password').untouched || !loginForm.hasError('required',['password'])">
                           密码不能为空
                         </span>
-                          <span class="help-block" [class.hidden]="loginForm.get('password').untouched || !loginForm.hasError('minlength','password')">
+                          <span class="help-block" [class.hidden]="loginForm.get('password').untouched || !loginForm.hasError('minlength',['password'])">
                           请至少输入6位数
                         </span>
                       </div>
@@ -57,11 +57,11 @@
 
                   <div class="row">
                     <div class="form-group">
-                      <div class="col-md-12" [class.has-error]="loginForm.get('imageCode').touched && loginForm.hasError('required','imageCode')">
+                      <div class="col-md-12" [class.has-error]="loginForm.get('imageCode').touched && loginForm.hasError('required',['imageCode'])">
                         <label>验证码</label>
                         <input formControlName="imageCode" style="width: 60%" class="form-control" placeholder="验证码"/>
-                        <img src="/code/image" style="position: absolute;right: 10%;bottom: 10%;" alt="验证码" >
-                        <span class="help-block" [class.hidden]="loginForm.get('imageCode').untouched || !loginForm.hasError('required','imageCode')">
+                        <img [src]="codeImgSrc" style="position: absolute;right: 20%;bottom: 10%;" alt="验证码" ><a href="javaScript:" style="position: absolute;right: 10%;bottom: 10%;" (click)="changeCode()">换一个</a>
+                        <span class="help-block" [class.hidden]="loginForm.get('imageCode').untouched || !loginForm.hasError('required',['imageCode'])">
                             验证码不能为空
                         </span>
                       </div>

@@ -13,7 +13,7 @@
 <ul class="portfolio-list sort-destination full-width-spaced mb-xl">
   <li class="col-md-3 col-sm-6 col-xs-12 isotope-item" *ngFor="let product of productList">
     <div class="portfolio-item center">
-      <a [routerLink]="['/product']" class="text-decoration-none block-link pt-md">
+      <a (click)="productDetail(product.id)" href="javaScript:" class="text-decoration-none block-link pt-md">
 								<span class="thumb-info thumb-info-preview thumb-info-preview-long mb-md">
 									<span class="thumb-info-wrapper">
 										<img class="thumb-info-image" style="width: 300px;height: 320px;" src="{{product.mainImage}}">
