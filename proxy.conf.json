@@ -1,8 +1,5 @@
 {
-  "/api":{
-    "target":"http://localhost:8099"
-  },
-  "/system":{
-    "target":"http://localhost:8099"
+  "/":{
+    "target":"http://144.34.244.17:8080"
   }
 }

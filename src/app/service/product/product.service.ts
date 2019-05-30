@@ -4,6 +4,8 @@ import {HttpService} from "../common/http.service";
 @Injectable()
 export class ProductService {
 
+  servicePrefix = "product-service";
+
   constructor(
     private httpService : HttpService
   ) { }
@@ -15,11 +17,11 @@ export class ProductService {
       keyWord:keyWord,
       categoryId:categoryId,
       flag:flag
-    },this.httpService.formHeader);
+    },this.httpService.formHeader, this.servicePrefix);
   }
 
   select(id:number){
-    return this.httpService.HttpGet("api/product/"+id);
+    return this.httpService.HttpGet("api/product/"+id, this.servicePrefix);
   }
 
 }

@@ -4,46 +4,48 @@ import {HttpService} from "../common/http.service";
 @Injectable()
 export class OrderService {
 
+  servicePrefix = "order-service";
+
   constructor(
     public httpService : HttpService
   ) { }
 
-  selectAll(pageNum:number,pageSize:number,orderNo?:number,status?:string){
+  selectAll(pageNum:number,pageSize:number,userId:number,orderNo?:number,status?:string){
     let url;
     if(orderNo !== null){
-      url = "api/order/page?pageNum="+pageNum+"&pageSize="+pageSize+"&orderNo="+orderNo;
+      url = "api/order/page?pageNum="+pageNum+"&pageSize="+pageSize+"&orderNo="+orderNo+"&userId="+userId;
     }else if(status !== null){
-      url = "api/order/page?pageNum="+pageNum+"&pageSize="+pageSize+"&status="+status;
+      url = "api/order/page?pageNum="+pageNum+"&pageSize="+pageSize+"&status="+status+"&userId="+userId;
     }else if(orderNo !== null && status !== null){
-      url = "api/order/page?pageNum="+pageNum+"&pageSize="+pageSize+"&orderNo="+orderNo+"&status="+status;
+      url = "api/order/page?pageNum="+pageNum+"&pageSize="+pageSize+"&orderNo="+orderNo+"&status="+status+"&userId="+userId;
     }else{
-      url = "api/order/page?pageNum="+pageNum+"&pageSize="+pageSize;
+      url = "api/order/page?pageNum="+pageNum+"&pageSize="+pageSize+"&userId="+userId;
     }
-    return this.httpService.HttpGet(url);
+    return this.httpService.HttpGet(url, this.servicePrefix);
   }
 
   select(id:number){
-    return this.httpService.HttpGet("api/order/"+id);
+    return this.httpService.HttpGet("api/order/"+id, this.servicePrefix);
   }
 
-  queryStatus(orderNo:number){
-    return this.httpService.HttpGet("api/order/status/"+orderNo);
+  queryStatus(userId: number, orderNo:number){
+    return this.httpService.HttpGet("api/order/status/"+userId+"/"+orderNo, this.servicePrefix);
   }
 
   queryCreateOrder(queryKey:number){
-    return this.httpService.HttpGet("api/order/queue/"+queryKey);
+    return this.httpService.HttpGet("api/order/queue/"+queryKey, this.servicePrefix);
   }
 
   insert(order:Order){
-    return this.httpService.HttpPost("api/order",order);
+    return this.httpService.HttpPost("api/order",order,null, this.servicePrefix);
   }
 
   pay(order:Order){
-    return this.httpService.HttpPost("api/order/pay",order);
+    return this.httpService.HttpPost("api/order/pay",order, null, this.servicePrefix);
   }
 
   update(order:Order){
-    return this.httpService.HttpPut("api/order",order);
+    return this.httpService.HttpPut("api/order",order, null ,this.servicePrefix);
   }
 
 }

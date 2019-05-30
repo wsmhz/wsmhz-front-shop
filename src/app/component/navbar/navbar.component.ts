@@ -34,6 +34,7 @@ export class NavbarComponent implements OnInit {
         this.routeInfo.queryParams.subscribe((data)=>{
           let loginFlag = data.loginFlag;
           if( ! this.commonUtil.isNull(loginFlag)){
+            console.log(this.commonUtil.getUserInfo());
            this.user = this.commonUtil.getUserInfo();
           }
         });
@@ -67,6 +68,7 @@ export class NavbarComponent implements OnInit {
       .then(res=>{
         if(res.status === this.commonConfig.RESPONSE_CODE.SUCCESS){
           localStorage.removeItem("user");
+          localStorage.removeItem("authorization");
           this.user = this.commonUtil.getUserInfo();
           this.router.navigate(['login']);
         }

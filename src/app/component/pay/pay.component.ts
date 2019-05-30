@@ -49,7 +49,7 @@ export class PayComponent implements OnInit,OnDestroy{
               this.img = response.data.qrCodeUrl;
               this.orderNo = response.data.orderNo;
               this.queryStatusTimer = setInterval(()=>{
-                this.orderService.queryStatus(orderNo).then(resp => {
+                this.orderService.queryStatus(this.user.id, orderNo).then(resp => {
                   if(resp.status === this.commonConfig.RESPONSE_CODE.SUCCESS){
                     if((!this.commonUtil.isNull(resp.data)) && resp.data >= 20){
                       clearInterval(this.queryStatusTimer);

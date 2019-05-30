@@ -4,28 +4,30 @@ import {HttpService} from "../common/http.service";
 @Injectable()
 export class ShippingService {
 
+  servicePrefix = "order-service";
+
   constructor(
     public httpService : HttpService
   ) { }
 
-  selectAll(){
-    return this.httpService.HttpGet("api/shipping");
+  selectAll(userId: number){
+    return this.httpService.HttpGet("api/shipping/user/" + userId, this.servicePrefix);
   }
 
   select(id:number){
-    return this.httpService.HttpGet("api/shipping/"+id);
+    return this.httpService.HttpGet("api/shipping/"+id, this.servicePrefix);
   }
 
   insert(shipping:Shipping){
-    return this.httpService.HttpPost("api/shipping",shipping);
+    return this.httpService.HttpPost("api/shipping",shipping, null, this.servicePrefix);
   }
 
   update(shipping:Shipping){
-    return this.httpService.HttpPut("api/shipping",shipping);
+    return this.httpService.HttpPut("api/shipping",shipping, null, this.servicePrefix);
   }
 
   delete(id:number){
-    return this.httpService.HttpDelete("api/shipping/"+id);
+    return this.httpService.HttpDelete("api/shipping/"+id,this.servicePrefix);
   }
 
 }

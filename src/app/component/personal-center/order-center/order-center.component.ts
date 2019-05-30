@@ -16,6 +16,7 @@ declare var $:any;
 })
 export class OrderCenterComponent implements OnInit {
 
+  user = this.commonUtil.getUserInfo();
   orderList = [];
   searchOrderNo:number;
 
@@ -42,7 +43,7 @@ export class OrderCenterComponent implements OnInit {
   }
 
   initOrderList(pageNum:number,pageSize:number,orderNo?:number,status?:string){
-    this.orderService.selectAll(pageNum,pageSize,orderNo,status)
+    this.orderService.selectAll(pageNum,pageSize,this.user.id,orderNo,status)
       .then(res => {
         if(res.status === this.commonConfig.RESPONSE_CODE.SUCCESS){
           this.orderList = res.data.list;

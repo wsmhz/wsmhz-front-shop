@@ -47,7 +47,7 @@ export class ShippingComponent implements OnInit {
   }
 
   initList(){
-    this.shippingService.selectAll()
+    this.shippingService.selectAll(this.user.id)
       .then(res => {
         if(res.status === this.commonConfig.RESPONSE_CODE.SUCCESS){
             this.shippingList = res.data;

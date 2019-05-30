@@ -4,24 +4,27 @@ import {HttpService} from "../common/http.service";
 @Injectable()
 export class LoginService {
 
+  servicePrefix = "oauth-service";
+
   constructor(
     private httpService:HttpService
   ) { }
 
   login(username:string,password:string,imageCode:string){
     return this.httpService.HttpPost('system/login',{
-      username:username,
+      username:"user_" + username,
       password:password,
-      imageCode:imageCode
-    },this.httpService.formHeader);
+      imageCode:imageCode,
+      deviceId: 'wsmhz'
+    },this.httpService.formHeader, this.servicePrefix);
   }
 
   register(user:User){
-    return this.httpService.HttpPost('api/user/register',user);
+    return this.httpService.HttpPost('register',user, null, this.servicePrefix);
   }
 
   logout(){
-    return this.httpService.HttpGet('system/logout');
+    return this.httpService.HttpGet('logout', this.servicePrefix);
   }
 
 }
